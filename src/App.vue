@@ -7,10 +7,11 @@
     </ul>
   </section>
   <section>
-    <h1>Reverse Fruits</h1>
-    <ul>
+    <h1 @click="handler">Reverse Fruits</h1>
+    <ul v-if="isShow">
       <li v-for="fruit in reverseFruits" :key="fruit">{{ fruit }}</li>
     </ul>
+    <ul v-else><li>not found</li></ul>
   </section>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <h1 @click="increase"> count : {{count}}</h1>
@@ -45,6 +46,7 @@ export default {
       msg: 'Hello taekyung',
       msgHtml: '<div sycle="color: red;">Hello!!</div>',
       msgStyle: 'active',
+      isShow: true,
       fontStyle: {
         color: 'orange',
         fontSize: '30px'
@@ -88,6 +90,9 @@ export default {
     changeStyle() {
       this.fontStyle.color = 'red'
       this.fontStyle.fontSize = '50px'
+    },
+    handler() {
+      this.isShow = !this.isShow
     }
   }
 }
