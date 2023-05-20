@@ -1,5 +1,5 @@
 <template>
-  <MyBtn @myEvent="log">Banana</MyBtn>
+  <MyBtn @myEvent="log" @change-msg="logMsg">Banana</MyBtn>
   <MyBtn color="royalblue">
     <span style="color: red;">Apple</span>
   </MyBtn>
@@ -89,8 +89,12 @@ export default {
     add() {
       this.msg += '!'
     },
-    log() {
+    log(event) {
       console.log('Click')
+      console.log(event)
+    },
+    logMsg(msg){
+      console.log(msg)
     }
   }
 }

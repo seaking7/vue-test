@@ -3,15 +3,27 @@
     :class="{ large }" class="btn">
     <slot></slot>
     </div>
-    <h5 @dblclick="$emit('myEvent')">ABC</h5>
+    <h5 @dblclick="$emit('myEvent', $event)">ABC</h5>
+    <input type="text" v-model="msg" />
 </template>
 
 <script>
 export default {
     inheritAttrs: false,
     emits: [
-        'myEvent'
+        'myEvent',
+        'changeMsg'
     ],
+    data() {
+        return {
+            msg: ''
+        }
+    },
+    watch: {
+        msg() {
+            this.$emit('changeMsg', this.msg)
+        }
+    },
     props: {
         color: {
             type: String,
