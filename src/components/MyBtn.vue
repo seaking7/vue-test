@@ -1,12 +1,17 @@
 <template>
     <div :style="{backgroundColor: color }"
     :class="{ large }" class="btn">
-    {{ text }}
+    <slot></slot>
     </div>
+    <h5 @dblclick="$emit('myEvent')">ABC</h5>
 </template>
 
 <script>
 export default {
+    inheritAttrs: false,
+    emits: [
+        'myEvent'
+    ],
     props: {
         color: {
             type: String,
@@ -15,10 +20,6 @@ export default {
         large: {
             type: Boolean,
             default: false
-        },
-        text: {
-            type: String,
-            default: ''
         }
     }
 

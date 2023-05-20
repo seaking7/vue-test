@@ -1,7 +1,9 @@
 <template>
-  <MyBtn text="Banana" />
-  <MyBtn text="Apple" color="royalblue" />
-  <MyBtn text="Orange" color="#A41" large />
+  <MyBtn @myEvent="log">Banana</MyBtn>
+  <MyBtn color="royalblue">
+    <span style="color: red;">Apple</span>
+  </MyBtn>
+  <MyBtn color="#A41" large>Orange</MyBtn>
   <EventTest></EventTest>
   <h1 @click="increase"> count : {{count}}</h1>
     <h1 v-once @click="add">{{ msg }} </h1>
@@ -87,23 +89,8 @@ export default {
     add() {
       this.msg += '!'
     },
-    changeStyle(event) {
-      this.fontStyle.color = 'red'
-      this.fontStyle.fontSize = '50px'
-      console.log(event)
-    },
-    handler(event) {
-      this.isShow = !this.isShow
-      console.log(event)
-    },
-    keyHandler(event) {
-      if(event.key === 'Enter'){
-        console.log('Enter!!')
-      }
-    },
-    inputHandler(event) {
-      this.msg = event.target.value
-      console.log(this.msg)
+    log() {
+      console.log('Click')
     }
   }
 }
