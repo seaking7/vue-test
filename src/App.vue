@@ -1,4 +1,5 @@
 <template>
+  <ParentData :msg="message"></ParentData>
   <MyBtn @myEvent="log" @change-msg="logMsg">Banana</MyBtn>
   <MyBtn color="royalblue">
     <span style="color: red;">Apple</span>
@@ -29,6 +30,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import Fruit from './components/FruitData.vue'
 import EventTest from './components/EventTest.vue'
 import MyBtn from './components/MyBtn.vue'
+import ParentData from './components/ParentData.vue'
 import shortid from 'shortid'
 
 export default {
@@ -37,13 +39,15 @@ export default {
     HelloWorld,
     Fruit,
     EventTest,
-    MyBtn
+    MyBtn,
+    ParentData
   },
   data(){
     return {
       count: 2,
       fruits: ['Apple', 'Banana', 'Cherry'],
       msg: 'Hello taekyung',
+      message: 'TestData',
       msgHtml: '<div sycle="color: red;">Hello!!</div>',
       msgStyle: 'active',
       isShow: true,
