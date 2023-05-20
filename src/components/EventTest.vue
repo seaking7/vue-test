@@ -1,38 +1,36 @@
 <template>
-  <MyBtn />
-  <MyBtn color="royalblue" />
-  <MyBtn color="#A41" />
-  <EventTest></EventTest>
-  <h1 @click="increase"> count : {{count}}</h1>
-    <h1 v-once @click="add">{{ msg }} </h1>
-    <p v-bind:class="msgStyle" v-html="msgHtml"></p>
-    <div v-if="count > 4"> 4보다 큽니다!</div>
+    <h3>{{ msg }}</h3>
+    <input type="text" v-model.lazy.trim="msg" />
     <ul>
-      <Fruit 
-      v-for="fruit in fruits" 
-      :key="fruit"
-      :name="fruit">
-      {{ fruit }}
-    </Fruit>
+      <li v-for="(f,i) in fruits" :key="f">{{ f }}-{{ i }}</li>
     </ul>
-  <HelloWorld msg="Welcome to Taekyung"/>
-</template>
+    <ul>
+      <li v-for="{id, name} in newFruits" :key="id">{{ name }}-{{ id }}</li>
+    </ul>
+    <section v-if="hasFruit">
+      <h1 :style="[fontStyle, backgroundStyle]"
+      @click="changeStyle">Fruits</h1>
+      <ul>
+        <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
+      </ul>
+    </section>
+    <section>
+      <h1 @click="handler">Reverse Fruits</h1>
+      <ul v-if="isShow">
+        <li v-for="fruit in reverseFruits" :key="fruit">{{ fruit }}</li>
+      </ul>
+      <ul v-else><li>not found</li></ul>
+    </section>
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+
+  </template>
+
+
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Fruit from './components/FruitData.vue'
-import EventTest from './components/EventTest.vue'
-import MyBtn from './components/MyBtn.vue'
 import shortid from 'shortid'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-    Fruit,
-    EventTest,
-    MyBtn
-  },
   data(){
     return {
       count: 2,
