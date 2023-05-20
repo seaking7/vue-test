@@ -1,17 +1,26 @@
 <template>
-    <div :style="{backgroundColor: color }" class="btn">
-        Apple
+    <div :style="{backgroundColor: color }"
+    :class="{ large }" class="btn">
+    {{ text }}
     </div>
 </template>
 
 <script>
-    export default {
-        props: {
-            color: {
-                type: String,
-                default: 'gray'
-            }
+export default {
+    props: {
+        color: {
+            type: String,
+            default: 'gray'
+        },
+        large: {
+            type: Boolean,
+            default: false
+        },
+        text: {
+            type: String,
+            default: ''
         }
+    }
 
 }
 </script>
@@ -25,5 +34,9 @@
         background-color: gray;
         color: white;
         cursor: pointer;
+    }
+    .btn.large {
+        font-size: 20px;
+        padding: 10px 20px;
     }
 </style>

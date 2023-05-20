@@ -1,7 +1,7 @@
 <template>
-  <MyBtn />
-  <MyBtn color="royalblue" />
-  <MyBtn color="#A41" />
+  <MyBtn text="Banana" />
+  <MyBtn text="Apple" color="royalblue" />
+  <MyBtn text="Orange" color="#A41" large />
   <EventTest></EventTest>
   <h1 @click="increase"> count : {{count}}</h1>
     <h1 v-once @click="add">{{ msg }} </h1>
