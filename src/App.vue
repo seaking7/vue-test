@@ -1,4 +1,13 @@
 <template>
+  <h3>{{ msg }}</h3>
+  <input type="text" @keydown.enter="keyHandler"
+   :value="msg" @input="inputHandler" />
+  <ul>
+    <li v-for="(f,i) in fruits" :key="f">{{ f }}-{{ i }}</li>
+  </ul>
+  <ul>
+    <li v-for="{id, name} in newFruits" :key="id">{{ name }}-{{ id }}</li>
+  </ul>
   <section v-if="hasFruit">
     <h1 :style="[fontStyle, backgroundStyle]"
     @click="changeStyle">Fruits</h1>
@@ -32,6 +41,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Fruit from './components/FruitData.vue'
+import shortid from 'shortid'
 
 export default {
   name: 'App',
@@ -64,6 +74,12 @@ export default {
       return this.fruits.map(fruit => {
         return fruit.split('').reverse().join('')
       })
+    },
+    newFruits() {
+      return this.fruits.map((fruit) => ({
+        id: shortid.generate(),
+        name: fruit
+      }))
     }
   },
   beforeCreate(){
@@ -87,12 +103,23 @@ export default {
     add() {
       this.msg += '!'
     },
-    changeStyle() {
+    changeStyle(event) {
       this.fontStyle.color = 'red'
       this.fontStyle.fontSize = '50px'
+      console.log(event)
     },
-    handler() {
+    handler(event) {
       this.isShow = !this.isShow
+      console.log(event)
+    },
+    keyHandler(event) {
+      if(event.key === 'Enter'){
+        console.log('Enter!!')
+      }
+    },
+    inputHandler(event) {
+      this.msg = event.target.value
+      console.log(this.msg)
     }
   }
 }
