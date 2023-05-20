@@ -1,6 +1,7 @@
 <template>
   <section v-if="hasFruit">
-    <h1>Fruits</h1>
+    <h1 :style="[fontStyle, backgroundStyle]"
+    @click="changeStyle">Fruits</h1>
     <ul>
       <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
     </ul>
@@ -43,7 +44,14 @@ export default {
       fruits: ['Apple', 'Banana', 'Cherry'],
       msg: 'Hello taekyung',
       msgHtml: '<div sycle="color: red;">Hello!!</div>',
-      msgStyle: 'active'
+      msgStyle: 'active',
+      fontStyle: {
+        color: 'orange',
+        fontSize: '30px'
+      },
+      backgroundStyle: {
+        backgroundColor: 'black'
+      }
     }
   },
   computed: {
@@ -76,7 +84,10 @@ export default {
     },
     add() {
       this.msg += '!'
-
+    },
+    changeStyle() {
+      this.fontStyle.color = 'red'
+      this.fontStyle.fontSize = '50px'
     }
   }
 }
