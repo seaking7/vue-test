@@ -3,7 +3,11 @@
   <MyBtn color="royalblue">
     <span style="color: red;">Apple</span>
   </MyBtn>
-  <MyBtn color="#A41" large>Orange</MyBtn>
+  <MyBtn>
+    <template #icon><span>(B)</span></template>
+    <template #text><span>Apple</span></template>
+  </MyBtn>
+  <MyBtn color="#A41" large></MyBtn>
   <EventTest></EventTest>
   <h1 @click="increase"> count : {{count}}</h1>
     <h1 v-once @click="add">{{ msg }} </h1>

@@ -1,7 +1,8 @@
 <template>
     <div :style="{backgroundColor: color }"
     :class="{ large }" class="btn">
-    <slot></slot>
+    <slot name="icon">(a)</slot>
+    <slot name="text">Fallback</slot>
     </div>
     <h5 @dblclick="$emit('myEvent', $event)">ABC</h5>
     <input type="text" v-model="msg" />
