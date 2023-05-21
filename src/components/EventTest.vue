@@ -1,5 +1,5 @@
 <template>
-    <h3>{{ msg }}</h3>
+    <h3 ref="hello">{{ msg }}</h3>
     <input type="text" v-model.lazy.trim="msg" />
     <ul>
       <li v-for="(f,i) in fruits" :key="f">{{ f }}-{{ i }}</li>
@@ -76,6 +76,7 @@ export default {
   },
   mounted(){
     console.log('Mounted')
+    console.log(this.$refs.hello)
     console.log(document.querySelector('h1'), 'mounted상태에서 연결되어 데이터 나옴')
   },
   methods: {
