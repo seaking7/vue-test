@@ -1,44 +1,38 @@
 <template>
-
-  <HelloWorld msg="Welcome to Taekyung"/>
+  <h1 @click="increase">
+  {{ count }} // {{ doubleCount }}
+  </h1>
+    <h1 @click="changeMessage">
+        {{ message }} // {{ reversedMessage }}
+    </h1>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, computed, watch } from 'vue'
 
 export default {
 
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data(){
-    return {
-      count: 2,
-      msg: 'Hello taekyung',
-      msgStyle: 'active',
-      isShow: true,
-      fontStyle: {
-        color: 'orange',
-        fontSize: '30px'
-      },
-      backgroundStyle: {
-        backgroundColor: 'black'
+  setup(){
+      let count = ref(0)
+      const doubleCount = computed(() => {
+          return count.value * 2
+      })
+      function increase() {
+          count.value += 1
       }
-    }
-  },
-  created(){
-    console.log('Created!', this.count)
-    console.log(document.querySelector('h1'), 'created에서는 연결이 안되어서 없음')
-  },
-  mounted(){
-    console.log('Mounted')
-    console.log(document.querySelector('h1'), 'mounted상태에서 연결되어 데이터 나옴')
-  },
-  methods: {
-    increase(){
-      this.count += 1
-    }
+      let message = ref('Hello world!')
+      const reversedMessage = computed(() => {
+          return message.value.split('').reverse().join('')
+      })
+      watch(message, (newValue) => {
+          console.log(newValue)
+      })
+      function changeMessage() {
+        message.value = 'Good?'
+      }
+      return {
+            count, doubleCount, message, reversedMessage, increase, changeMessage
+      }
   }
 }
 </script>
